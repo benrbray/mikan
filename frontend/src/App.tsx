@@ -32,8 +32,6 @@ const randomMultiDayEvent = (): CalendarEvent => {
 
 const events: CalendarEvent[] = Array.from({ length: 10 }, (v,i) => randomMultiDayEvent());
 
-console.log(events);
-
 ////////////////////////////////////////////////////////////
 
 function App() {
@@ -42,7 +40,7 @@ function App() {
       <Timeline
         events={events}
         viewStart={{ instant : new Date(2023, 0, 1) }}
-        viewEnd={{ instant : new Date(2023, 0, 1) }}
+        viewEnd={{ instant : new Date(2024, 0, 1) }}
       />
     </div>
   )

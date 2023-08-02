@@ -1,5 +1,6 @@
 .timeline {
 	position: relative;
+	min-height: 3em;
 }
 
 .timeline-span {
@@ -10,7 +11,30 @@
 	background-color: red;
 }
 
+.timeline-tick {
+	position: absolute;
+	left: calc(var(--tick-at) * var(--millisecond-size));
+	height: 100%;
+}
+
+.tick-bar {
+	position: absolute;
+	top: 0;
+	width: 1px;
+	height: 100%;
+	background: black;
+}
+
+.tick-minor {
+	opacity: 0.25;
+}
+
+.tick-major {
+	opacity: 0.75;
+}
+
 .timeline-shift {
 	position: absolute;
+	height: 100%;
 	left: calc(-1 * var(--timeline-start) * var(--millisecond-size));
 }
