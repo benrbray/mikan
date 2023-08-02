@@ -6,9 +6,9 @@ export interface TimelineSpanProps {
 }
 
 export const TimelineSpan = (props: TimelineSpanProps) => {
-  const eventX = props.event.start.instant.getTime() / 1000 / 60 / 60 / 24;
   const style = {
-    "--event-x" : `${eventX}px`
+    "--event-start" : props.event.start.instant.getTime(),
+    "--event-end"   : props.event.end.instant.getTime()
   };
 
   return <div class="timeline-span" style={style}>
@@ -20,16 +20,24 @@ export const TimelineSpan = (props: TimelineSpanProps) => {
 
 export interface TimelineProps {
   events: CalendarEvent[],
+  viewStart: Moment,
+  viewEnd: Moment
 }
 
 export const Timeline = (props: TimelineProps) => {
+  const style = {
+    "--timeline-start": props.viewStart.instant.getTime(),
+    "--millisecond-size": 10 / (1000 * 60 * 60 * 24) + "px",
+  };
   return <div class="timeline">
-    <For each={props.events}>
-    {
-      (event) => {
-        return <TimelineSpan event={event} />
+    <div class="timeline-shift" style={style}>
+      <For each={props.events}>
+      {
+        (event) => {
+          return <TimelineSpan event={event} />;
+        }
       }
-    }
-    </For>
+      </For>
+    </div>
   </div>
 }

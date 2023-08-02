@@ -4,8 +4,13 @@
 
 .timeline-span {
 	position: absolute;
-	left: var(--event-x);
+	left: calc(var(--event-start) * var(--millisecond-size));
+	width: calc((var(--event-end) - var(--event-start)) * var(--millisecond-size));
 	height: 2rem;
-	min-width: 2rem;
 	background-color: red;
+}
+
+.timeline-shift {
+	position: absolute;
+	left: calc(-1 * var(--timeline-start) * var(--millisecond-size));
 }

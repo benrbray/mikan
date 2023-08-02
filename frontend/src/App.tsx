@@ -39,7 +39,11 @@ console.log(events);
 function App() {
   return (
     <div>
-      <Timeline events={events} />
+      <Timeline
+        events={events}
+        viewStart={{ instant : new Date(2023, 0, 1) }}
+        viewEnd={{ instant : new Date(2023, 0, 1) }}
+      />
     </div>
   )
 }
