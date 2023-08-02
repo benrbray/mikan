@@ -1,34 +1,46 @@
 import { createSignal } from 'solid-js'
-import solidLogo from './assets/solid.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { Timeline } from './components/Timeline/Timeline';
+
+////////////////////////////////////////////////////////////
+
+/** Generates a random integer in the range [a, b) */
+const randomInt = (a: number, b: number): number => {
+  a = Math.ceil(a);
+  b = Math.floor(b);
+  return Math.floor(a + (Math.random() * (b-a)));
+}
+
+const randomMultiDayEvent = (): CalendarEvent => {
+  const year = 2023;
+  
+  const month = randomInt(0, 12);
+  const day = randomInt(0, 31);
+  const startDate = new Date(year, month, day);
+
+  const length = randomInt(1, 10);
+  const endDate = new Date(year, month, day + length);
+
+  return {
+    title: "",
+    start: { instant: startDate },
+    end: { instant: endDate }
+  };
+}
+
+////////////////////////////////////////////////////////////
+
+const events: CalendarEvent[] = Array.from({ length: 10 }, (v,i) => randomMultiDayEvent());
+
+console.log(events);
+
+////////////////////////////////////////////////////////////
 
 function App() {
-  const [count, setCount] = createSignal(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} class="logo" alt="Vite logo" />
-        </a>
-        <a href="https://solidjs.com" target="_blank">
-          <img src={solidLogo} class="logo solid" alt="Solid logo" />
-        </a>
-      </div>
-      <h1>Vite + Solid</h1>
-      <div class="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count()}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p class="read-the-docs">
-        Click on the Vite and Solid logos to learn more
-      </p>
-    </>
+    <div>
+      <Timeline events={events} />
+    </div>
   )
 }
 

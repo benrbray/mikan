@@ -1,0 +1,11 @@
+.timeline {
+	position: relative;
+}
+
+.timeline-span {
+	position: absolute;
+	left: var(--event-x);
+	height: 2rem;
+	min-width: 2rem;
+	background-color: red;
+}
